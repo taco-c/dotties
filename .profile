@@ -13,7 +13,11 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && startx
+# Xorg
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && startx "$XINITRC"
 
 #if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #	exec startx
