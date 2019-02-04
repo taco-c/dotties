@@ -1297,7 +1297,7 @@ xkb_symbols "pc+no+inet(evdev)" {
     };
     key <AC04> {
         type= "FOUR_LEVEL_SEMIALPHABETIC",
-        symbols[Group1]= [               f,               F,         dstroke,     ordfeminine ]
+        symbols[Group1]= [               f,               F,             d,                 D ]
     };
     key <AC05> {
         type= "FOUR_LEVEL_ALPHABETIC",
