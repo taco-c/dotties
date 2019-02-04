@@ -1,6 +1,6 @@
 # .profile
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="palemoon"
 export READER="zathura"
 

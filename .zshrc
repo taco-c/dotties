@@ -18,10 +18,4 @@ compinit
 
 PROMPT='%F{yellow}[%1~]%f '
 
-alias ls="ls -hN --color=auto --group-directories-first"
-alias ll="ls -lA"
-alias grep="grep --color=auto"
-alias diff="diff --color=auto"
-alias mkdir="mkdir -pv"
-alias yt="youtube-dl -ic --add-metadata"
-alias dotties="git --git-dir=$HOME/.dotties/ --work-tree=$HOME"
+[ -f "$XDG_CONFIG_HOME/aliases" ] && source "$XDG_CONFIG_HOME/aliases"
