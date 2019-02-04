@@ -4,7 +4,7 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 bindkey "\e[3~" delete-char
 
-HISTFILE=~/.zsh/histfile
+HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory autocd extendedglob nomatch notify
