@@ -1,0 +1,11 @@
+# Aliases
+
+# Dotfiles management
+alias dotties="git --git-dir=$HOME/.dotties/ --work-tree=$HOME/"
+
+# General
+alias ls="ls -hN --color=auto --group-directories-first"
+alias ll="ls -lA"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+alias e="$EDITOR"
