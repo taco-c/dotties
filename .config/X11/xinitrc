@@ -1,5 +1,5 @@
 # .xinitrc
 
-[ -f ~/.Xkeymap ] && xkbcomp ~/.Xkeymap $DISPLAY
+[ -f "$XDG_CONFIG_HOME/keymaps/xkeymap" ] && xkbcomp "$XDG_CONFIG_HOME/keymaps/xkeymap" $DISPLAY
 
 exec i3

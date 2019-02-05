@@ -17,11 +17,11 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && startx "$XINITRC"
+#[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && startx "$XINITRC"
 
-#if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-#	exec startx
-#fi
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+	exec startx "$XINITRC"
+fi
 
 sudo -n loadkeys "$XDG_CONFIG_HOME/keymaps/ttymap.kmap" 2>/dev/null
 
