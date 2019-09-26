@@ -1,0 +1,115 @@
+#!/bin/sh
+
+# Šenerelle
+super + {_,shift +} Return
+	$TERMINAL {_,-e tmux}
+
+super + Tab
+	rofi -show combi -modi combi -theme sidebar
+
+super + space
+	xkbutil toggle
+
+super + Delete
+	lockscreen
+
+# focus the node in the given direction
+super + {_,shift + }{left,down,up,right}
+	[ "$WM" = "bspwm" ] && bspc node -{f,s} {west,south,north,east}; \
+	[ "$WM" = "i3" ] && i3-msg {focus,move} {left,down,up,right}
+
+super + control + {left,right}
+	[ "$WM" = "bspwm" ] && bspc desktop -f {prev,next}.local; \
+	[ "$WM" = "i3" ] && i3-msg workspace {prev,next}
+
+#super + {_,shift +} {1-9,0}
+#	[ "$WM" = "bspwm" ] && bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Bokstavkombinasjonssnarveier
+super + q
+	[ "$WM" = "bspwm" ] && bspc node -c; \
+	[ "$WM" = "i3" ] && i3-msg kill
+
+super + w
+	bookmarksurfing
+
+super + r
+	st -e ranger
+
+super + control + r
+	reloadwm
+
+super + t
+	[ "$WM" = "i3" ] && i3-msg split toggle
+
+super + shift + i
+	$TERMINAL -e htop
+
+super + o
+	wiktionaire uib
+
+super + a
+	$TERMINAL -e pulsemixer
+
+super + s
+	openstream
+
+super + f
+	[ "$WM" = "i3" ] && i3-msg fullscreen toggle
+
+# Swap the current node and the biggest node
+super + g
+	[ "$WM" = "bspwm" ] && bspc node -s biggest
+
+super + h
+	surf "https://www.hurtigruten.no/kart/?shipCode=MS"
+
+super + x
+	[ "$WM" = "bspwm" ] && bspc quit; \
+	[ "$WM" = "i3" ] && [ "$(echo -e 'Nei\nJa' | dmenu -p 'Vil du avslutte i3?')" = "Ja" ] && i3-msg exit
+
+super + shift + x
+	[ "$(echo -e 'Nei\nJa' | dmenu -p 'Vil du slå av PC-en?')" = "Ja" ] && $TERMINAL -e "sudo shutdown -h now"
+
+super + v
+	wiktionaire
+
+super + n
+	dugrep-ms
+
+super + shift + n
+	dugrep-pdf
+
+# Screenshots and recording
+{_,shift +} Print
+	cd $HOME/skjermdumper && scrot -z{_,u}
+
+super + {_,shift +} Print
+	dmenurecord {_,kill}
+
+#F keys
+super + F3
+	$TERMINAL -e "sudo wifi-menu"
+
+
+# XF86 Keys
+XF86AudioMute
+	volumkontroll toggle
+
+XF86Audio{Lower,Raise}Volume
+	volumkontroll change {-,+}5
+
+XF86AudioNext
+	cmus-remote --next
+
+XF86AudioPlay
+	cmus-remote --pause
+
+XF86AudioPrev
+	cmus-remote --prev
+
+XF86AudioStop
+	cmus-remote --stop
+
+XF86Sleep
+	lockscreen
