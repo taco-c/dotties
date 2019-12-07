@@ -1,0 +1,4 @@
+#!/bin/sh
+
+www="$(cat $HOME_BIN/bookmarksurfing.d/bookmarks | dmenu -i -p "Gå til:")"
+[ "$www" != "" ] && surf $www

@@ -1,0 +1,3 @@
+#! /bin/bash
+sudo modprobe brcmsmac
+sudo ip link set wlp18s0b1 up

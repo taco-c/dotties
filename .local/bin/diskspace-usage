@@ -1,0 +1,2 @@
+#! /bin/sh
+du -hd1 -BM "$1" | sort -hr

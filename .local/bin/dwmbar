@@ -1,0 +1,24 @@
+#!/bin/sh
+
+delim="|"
+
+status() {
+		# Volum
+		vol=$(pulsemixer --get-volume | awk '{print $1}')
+		[ "$(pulsemixer --get-mute)" = "1" ] && vol="M"
+		printf " %s%%" "$vol"
+
+		printf " $delim "
+		
+		# Klokke
+		#printf "$(brøkur)"
+
+		#printf " $delim "
+
+		printf "$(ordur) "
+}
+
+while :; do
+		xsetroot -name "$(status | tr '\n' ' ')"
+		sleep 1m
+done

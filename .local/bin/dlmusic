@@ -1,0 +1,14 @@
+#!/bin/sh
+
+[ "$2" = "" ] && dir="." || dir="$2"
+[ ! -d "$dir" ] && mkdir -pv "$dir"
+
+cd "$dir"
+
+youtube-dl -ic -f mp3/bestaudio[ext=mp3]/bestaudio "$1" -o "%(title)s.%(ext)s"
+
+for i in *.webm; do
+	ffmpeg -i "$i" "${i%.*}.mp3"
+done
+
+#rm "*.webm"

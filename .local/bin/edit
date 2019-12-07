@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# edit: edit files from everywhere.
+
+#filelist="$HOME_BIN/edit.d/filelist"
+#dmenu_cmd="dmenu -i -l 10"
+dmenu_cmd="rofi -dmenu -theme sidebar -p :"
+
+[ "$1" = "-h" ] && echo "Usage: edit [- | filename]\n\tIf filename is nothing, open dmenu to chose file.\n\tIf filename is -, same as above, but opens file in a new window." && exit
+
+if [ "$#" -lt 1 ] || [ "$1" = "-" ]; then
+	chosen=`du -a "$HOME" --exclude=".*" 2>/dev/null | grep -i "\.ms$" | cut -f2 | $dmenu_cmd`
+	#file=`awk '{print $1}' < $filelist | dmenu -i`
+	#chosen=`grep ^$file < $filelist | awk '{print $2}'`
+else
+	dir=`pwd`
+	chosen="$dir/$1"
+fi
+
+# Vask og rens
+chosen=`echo $chosen | sed "s|~|$HOME|"`
+
+[ "$chosen" = "" ] && exit
+
+if [ "$1" = "-" ]; then
+	$TERMINAL -e "$EDITOR \"$chosen\""
+else
+	$EDITOR "$chosen"
+fi

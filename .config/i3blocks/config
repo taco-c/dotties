@@ -1,0 +1,33 @@
+separator_block_width=15
+markup=none
+
+[screencast]
+command=cat /tmp/recordingicon
+signal=11
+
+[music]
+command=cmus-remote -Q | grep "^file" | sed 's/^file\s\/.*\///'
+interval=10
+#signal=
+
+[xkb-layout]
+command=cat "$XDG_CONFIG_HOME/keymaps/current-layout"
+interval=once
+signal=9
+
+[cpu-temp]
+command=sensors | awk '/^CPU:/ {print $2}' | sed 's/+//'
+interval=60
+
+[wifi]
+command=sed "s/down//;s/up/✴/" /sys/class/net/w*/operstate
+interval=once
+
+[volume]
+command=volumkontroll
+interval=once
+signal=10
+
+[time]
+command=printf "%s " "$(ordur)"
+interval=25

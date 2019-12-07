@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[ -f "$HOME_BIN/openstream.d/streamers" ] && channel=$(cat "$HOME_BIN/openstream.d/streamers" | rofi -theme sidebar -dmenu -p "Åpne strøm:")
+[ "$channel" = "" ] && exit
+echo "$channel" | sed 's/.*/https:\/\/www.twitch.tv\/\0/' | youtube-dl -a - -o - | mpv -
+[ "$?" != 0 ] && notify-send "openstream" "Kunne ikke åpne direktestrømmen til $channel." && exit
+
+#ii -s irc.twitch.tv -n potatoandtaco -k TW_PASS &
+#echo "/j #$channel" > "$HOME/irc/irc.twitch.tv/in"
+#$TERMINAL -e

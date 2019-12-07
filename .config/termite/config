@@ -1,0 +1,18 @@
+[options]
+#font = UbuntuMono 12
+font = Inconsolata 12
+allow_bold = true
+dynamic_title = true
+cursor_blink = system
+
+[colors]
+#foreground = #ffffff
+#background = #333333
+
+# Ubuntu colors
+#background = #350101
+#background = #2C001E
+background = rgba(44, 00, 30, 0.9)
+foreground = #ffffff
+cursor = #ffffff
+

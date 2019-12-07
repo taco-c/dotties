@@ -1,0 +1,21 @@
+#!/bin/sh
+
+dir=$XDG_CONFIG_HOME/keymaps
+
+_set () {
+	xkbcomp "$dir/$1.xkbmap" $DISPLAY && echo "$1" > "$dir/current-layout"
+}
+
+_toggle() {
+	if [ -f "$dir/current-layout" ]; then
+		layout="$(cat $dir/current-layout)"
+		[ "$layout" = "NO" ] && _set "RU"
+		[ "$layout" = "RU" ] && _set "NO"
+	fi
+}
+
+[ "$1" = "toggle" ] && _toggle
+[ "$1" = "set" ] && [ "$2" = "NO" ] && _set "NO"
+[ "$1" = "set" ] && [ "$2" = "RU" ] && _set "RU"
+
+[ "$WM" = "i3" ] && pkill -RTMIN+9 i3blocks

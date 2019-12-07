@@ -1,5 +1,16 @@
-# .xinitrc
+#!/bin/sh
 
-[ -f "$XDG_CONFIG_HOME/keymaps/xkeymap" ] && xkbcomp "$XDG_CONFIG_HOME/keymaps/xkeymap" $DISPLAY
+# Start programmer for graphische miljøer
+#backweb &			# Sett bakgrunnen
+./.fehbg
+unclutter &			# Gøym musa etter ei stund
+dunst &				# Meldingsbokar
+compton -bfc			# Gennomsiktighet
+sxhkd &				# Enkel X Heiteknapper Demon
+[ "$WM" = "dwm" ]   dwmbar &	# dwm bar
+xkbutil set "$(cat $XDG_CONFIG_HOME/keymaps/current-layout)" &
+#minuttvarsel &
 
-exec i3
+#while :; do
+"$WM"
+#done

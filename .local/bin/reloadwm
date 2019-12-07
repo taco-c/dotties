@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# WM
+[ "$WM" = "bspwm" ] && bspc wm -r
+[ "$WM" = "i3" ] && i3-msg restart
+
+# Backweb-skript
+pkill -u riq backweb && backweb &
+
+# Sxhkd
+pkill -USR1 -x sxhkd
+

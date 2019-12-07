@@ -1,0 +1,3 @@
+#!/bin/sh
+
+free -m | awk '/^Mem:/ {printf "MEM: %s/%sM (%.2f%%)\n",$3,$2,$3/$2*100}'

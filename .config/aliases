@@ -1,13 +1,31 @@
+#!/bin/sh
 # Aliases
 
 # Dotfiles management
-alias dotties="git --git-dir=$HOME/.dotties/ --work-tree=$HOME/"
+#alias dotties="git --git-dir=$HOME/.dotties/ --work-tree=$HOME/"
 
 # General
 alias ls="ls -hN --color=auto --group-directories-first"
-alias ll="ls -lA"
+alias ll="ls -lAgG"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
-alias e="$EDITOR"
-alias edit="$EDITOR"
+#alias edit="$EDITOR"
 alias vim="nvim"
+alias alert='notify-send --urgency=low "$([ $? = 0 ] && echo "Suksess" || echo "Feil")" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Snarvegar
+alias cfi="$EDITOR $XDG_CONFIG_HOME/i3/config"
+alias cfx="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"
+alias cfa="$EDITOR $XDG_CONFIG_HOME/aliases"
+alias cfs="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+alias cfp="$EDITOR $HOME/.profile"
+alias cfz="$EDITOR $HOME/.zshrc"
+
+_fzf_edit() {
+	du -a "$1" | grep -vi "\.jpg$" | grep -vi "\.png$" | awk '{print $2}' | fzf --reverse --height=40% | xargs -r "$EDITOR"
+}
+
+alias ce="_fzf_edit $XDG_CONFIG_HOME"
+alias se="_fzf_edit $HOME_BIN"
+alias ge="_fzf_edit $GOPATH"
+alias pe="_fzf_edit $HOME/prosjekter"
