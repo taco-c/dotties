@@ -10,23 +10,23 @@ super + Tab
 super + space
 	xkbutil toggle && lemonblocks-reload keymap
 
-# focus the node in the given direction
-super + {_,shift +} {Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
+# bspwm focus the node in the given direction
+#super + {_,shift +} {Left,Down,Up,Right}
+#	bspc node -{f,s} {west,south,north,east}
 
-super + control + {Left,Right}
-	bspc desktop -f {prev,next}.local && lemonblocks-reload desktops
+#super + control + {Left,Right}
+#	bspc desktop -f {prev,next}.local && lemonblocks-reload desktops
 
-super + {_,shift +} {1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}' && \
-	lemonblocks-reload desktops
+#super + {_,shift +} {1-9,0}
+#	bspc {desktop -f,node -d} '^{1-9,10}' && \
+#	lemonblocks-reload desktops
 
-# expand a window by moving one of its side outward
-super + alt + Right
-	bspc node -z right 20 0
+# bspwm expand a window by moving one of its side outward
+#super + alt + Right
+#	bspc node -z right 20 0
 
-super + alt + Left
-	bspc node -z right -20 0
+#super + alt + Left
+#	bspc node -z right -20 0
 
 # PageUp og PageDown
 super + {_,shift +} {Next,Prior}
@@ -36,15 +36,14 @@ super + {Home,End}
 	amixer sset Master {100,50}% && lemonblocks-reload volume
 
 # Bokstavkombinasjonssnarveier
-super + q
-	bspc node -c;
+#super + q
+#	bspc node -c;
 
 super + w
-	dugrep mkv,mp4,avi vlc
-	#bookmarksurfing
+	dugrep mkv,mp4,avi mpv
 
 super + e
-	thunar
+	$TERMINAL -e ranger
 
 super + r
 	gnumeric "$HOME/git/regneskap/regneskap-2020.ods"
@@ -59,8 +58,8 @@ super + {_,shift +} y
 	mpv "$(xclip -out)"
 	#youtube-dl "$(xclip -out)" -o - | vlc - {_,--sout "#chromecast" --sout-chromecast-ip="192.168.10.178"}
 
-#super + shift + y
-#	surf "https://www.yr.no/stad/Noreg/Vestfold_og_Telemark/Larvik/Larvik/time_for_time.html"
+# super + shift + y
+# 	surf "https://www.yr.no/stad/Noreg/Vestfold_og_Telemark/Larvik/Larvik/time_for_time.html"
 
 super + p
 	thunderbird
@@ -76,12 +75,7 @@ super + a
 
 super + s
 	echo "rk@cassettian.space\nriq@192.168.1.4" | rofi -dmenu | xargs urxvt -e ssh
-	# openstream
 
-#super + f
-#	[ "$WM" = "i3" ] && i3-msg fullscreen toggle
-
-# Swap the current node and the biggest node
 super + g
 	gnome-calculator
 
@@ -100,14 +94,14 @@ super + shift + x
 super + c
 	_file="$(du -a $XDG_CONFIG_HOME | cut -f2 | rofi -dmenu -p "")" && [ "$_file" != "" ] && code "$_file"
 
-super + v
-	wiktionaire
+super + {_,shift +} v
+	wiktionaire {_,uib}
 
 super + n
 	dugrep pdf zathura
 
 super + shift + n
-	dugrep groff code && sleep 1s && lemonblocks-reload volume
+	dugrep groff code
 
 super + {_,shift +} m
 	amixer sset Master {toggle,mute} && lemonblocks-reload volume
@@ -128,7 +122,7 @@ XF86AudioMute
 	amixer sset Master toggle && lemonblocks-reload volume
 
 XF86Audio{Lower,Raise}Volume
-	amixer sset Master {10,20}%{-,+} && lemonblocks-reload volume
+	amixer sset Master 5%{-,+} && lemonblocks-reload volume
 
 XF86AudioNext
 	cmus-remote --next

@@ -3,7 +3,7 @@
 #exec gnome-session
 
 if [[ "$WM" != "bspwm" ]]; then
-	sxhkd -c ~/.config/sxhkd/sxhkdrc_universal &
+	sxhkd -c ~/.config/sxhkd/sxhkdrc &
 fi
 
 [ "$WM" = "dwm" ] && dwmbloxx &
