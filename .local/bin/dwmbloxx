@@ -11,6 +11,6 @@ _keymap() {
 }
 
 while true; do
-	xsetroot -name "$(_keymap) | $(_battery) | $(ordur)"
+	xsetroot -name "$(_keymap) | $(_battery) | $(brøkur)"
 	sleep 1s
 done
