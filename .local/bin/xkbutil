@@ -17,5 +17,3 @@ _toggle() {
 [ "$1" = "toggle" ] && _toggle
 [ "$1" = "set" ] && [ "$2" = "NO" ] && _set "NO"
 [ "$1" = "set" ] && [ "$2" = "RU" ] && _set "RU"
-
-[ "$WM" = "i3" ] && pkill -RTMIN+9 i3blocks
