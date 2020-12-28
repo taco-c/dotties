@@ -1,24 +1,59 @@
 #! /bin/sh
 
-sxhkd &
-~/.fehbg &
-unclutter &
+
+# If refreshing bspwm, remove all previous rules to prevent doubling up.
+bspc rule -r "*"
+
+run_if_not_running() {
+	[ "$(pgrep $1)" = "" ] && $1 $2 &
+}
+
+run_if_not_running sxhkd
+run_if_not_running unclutter
+xcompmgr &
+dunst &
+run_if_not_running redshift "-t 5500:3500"
+
+# We look for a non-laptop monitor to use for default, but use the laptop
+# screen (LVDS) if there's nothing else. This is because I assume that if you
+# have an extra screen attached to a laptop, you want to use that.
+#mainmonitor="$(bspc query --monitors --names | grep -v LVDS | head -n 1)"
+
+
+#if ! echo "$mainmonitor" | grep LVDS >/dev/null 2>&1; then
+#	xrandr --output "$mainmonitor" --auto --output LVDS --off
+#fi
+
+#xrandr --output LVDS --auto
+
+# Start workspaces on the main monitor.
+bspc monitor $mainmonitor -d 1 2 3 4 5 6 7 8 9 10
+# bspc monitor $mainmonitor -d A B C D E F G H I J
+# bspc monitor $mainmonitor -d Zevs Hera Poseidon Demeter Dionysos Apollon Artemis Hermes Athene Ares
+# bspc monitor $mainmonitor -d А Б В Г Д Е Ё Ж З И
+# bspc monitor $mainmonitor -d Ⰰ Ⰱ Ⰲ Ⰳ Ⰴ Ⰵ Ⰶ Ⰷ Ⰸ Ⰺ
 
 #bspc monitor -d I II III IV V VI VII VIII IX X
-bspc monitor VGA-0 -d I II III IV V
-bspc monitor LVDS -d VI VII VIII IX X
+#bspc monitor VGA-0 -d I II III IV V
+#bspc monitor LVDS -d VI VII VIII IX X
 
-bspc config border_width         0
-bspc config window_gap           0
+# ~/.local/bin/lemonbar-text | lemonbar -p -g x24 -B "#44111111" -f "Go:size=11" -f "Font Awesome" &
+lemonblocks &
+~/.fehbg &
+
+bspc config border_width 1
+bspc config window_gap   0
+# if panelbar-thing then bspc config top_padding 24
+bspc config focus_follows_pointer true
 
 bspc config split_ratio          0.5
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off
 bspc rule -a Surf state=tiled
 bspc rule -a Zathura state=tiled
+bspc rule -a Gnome-calculator state=floating

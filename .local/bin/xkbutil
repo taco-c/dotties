@@ -9,13 +9,14 @@ _set () {
 _toggle() {
 	if [ -f "$dir/current-layout" ]; then
 		layout="$(cat $dir/current-layout)"
-		[ "$layout" = "NO" ] && _set "RU"
-		[ "$layout" = "RU" ] && _set "NO"
+		case $layout in
+			"NO") _set "RU";;
+			"RU") _set "NO";;
+		esac
 	fi
 }
 
-[ "$1" = "toggle" ] && _toggle
-[ "$1" = "set" ] && [ "$2" = "NO" ] && _set "NO"
-[ "$1" = "set" ] && [ "$2" = "RU" ] && _set "RU"
+[ "$1" = "toggle" ] && _toggle && exit 0
+[ "$1" = "set" ] && [ "$2" != "" ] && _set "$2" && exit 0
 
-[ "$WM" = "i3" ] && pkill -RTMIN+9 i3blocks
+echo "Usage: xkbutil [toggle|set layout]"

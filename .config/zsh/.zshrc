@@ -8,9 +8,10 @@ bindkey "\e[3~" delete-char
 HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 HISTSIZE=10000
 SAVEHIST=10000
-PROMPT='%F{yellow}[%1~]%f '
+PROMPT='%F{yellow}[%~]%f '
 
 setopt appendhistory autocd extendedglob nomatch notify
+setopt HIST_IGNORE_DUPS
 unsetopt beep
 bindkey -v
 

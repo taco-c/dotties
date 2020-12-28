@@ -1,12 +1,14 @@
 #!/bin/sh
 
 # WM
-[ "$WM" = "bspwm" ] && bspc wm -r
-[ "$WM" = "i3" ] && i3-msg restart
+bspc wm -r
 
 # Backweb-skript
-pkill -u riq backweb && backweb &
+#pkill -u riq backweb && backweb &
+# ~/.fehbg &
 
 # Sxhkd
 pkill -USR1 -x sxhkd
 
+# Lemonbar
+pkill lemonbar

@@ -1,32 +1,14 @@
 #!/bin/sh
 
 # Generelle
-super + {_,shift +} Return
-	$TERMINAL {_,-e tmux}
+super + Return
+	$TERMINAL
 
 super + Tab
 	rofi -show run -theme sidetab
 
 super + space
 	xkbutil toggle && lemonblocks-reload keymap
-
-# focus the node in the given direction
-super + {_,shift +} {Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
-
-super + control + {Left,Right}
-	bspc desktop -f {prev,next}.local && lemonblocks-reload desktops
-
-super + {_,shift +} {1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}' && \
-	lemonblocks-reload desktops
-
-# expand a window by moving one of its side outward
-super + alt + Right
-	bspc node -z right 20 0
-
-super + alt + Left
-	bspc node -z right -20 0
 
 # PageUp og PageDown
 super + {_,shift +} {Next,Prior}
@@ -35,16 +17,11 @@ super + {_,shift +} {Next,Prior}
 super + {Home,End}
 	amixer sset Master {100,50}% && lemonblocks-reload volume
 
-# Bokstavkombinasjonssnarveier
-super + q
-	bspc node -c;
-
 super + w
-	dugrep mkv,mp4,avi vlc
-	#bookmarksurfing
+	dugrep mkv,mp4,avi mpv
 
 super + e
-	thunar
+	$TERMINAL -e ranger
 
 super + r
 	gnumeric "$HOME/git/regneskap/regneskap-2020.ods"
@@ -52,15 +29,12 @@ super + r
 super + control + r
 	$HOME/.local/bin/reloadwm
 
-#super + t
-#	[ "$WM" = "i3" ] && i3-msg split toggle
-
-super + {_,shift +} y
+super + y
 	mpv "$(xclip -out)"
 	#youtube-dl "$(xclip -out)" -o - | vlc - {_,--sout "#chromecast" --sout-chromecast-ip="192.168.10.178"}
 
-#super + shift + y
-#	surf "https://www.yr.no/stad/Noreg/Vestfold_og_Telemark/Larvik/Larvik/time_for_time.html"
+super + shift + y
+	surf "https://www.yr.no/stad/Noreg/Vestfold_og_Telemark/Larvik/Larvik/time_for_time.html"
 
 super + p
 	thunderbird
@@ -75,11 +49,7 @@ super + a
 	$TERMINAL -e pulsemixer
 
 super + s
-	echo "rk@cassettian.space\nriq@192.168.1.4" | rofi -dmenu | xargs urxvt -e ssh
-	# openstream
-
-#super + f
-#	[ "$WM" = "i3" ] && i3-msg fullscreen toggle
+	urxvt -e ssh riq@192.168.10.173
 
 # Swap the current node and the biggest node
 super + g
@@ -91,8 +61,8 @@ super + h
 super + l
 	i3lock -ei "$XDG_CONFIG_HOME/lock-img.png" -p win
 
-super + x
-	[ "$(echo -e 'Nei\nJa' | rofi -dmenu -p 'Vil du logge av?' -lines 2)" = "Ja" ] && bspc quit
+#super + x
+#	[ "$(echo -e 'Nei\nJa' | rofi -dmenu -p 'Vil du logge av?' -lines 2)" = "Ja" ] && bspc quit
 
 super + shift + x
 	[ "$(echo -e 'Nei\nJa' | rofi -dmenu -p 'Vil du slå av PC-en?' -lines 2)" = "Ja" ] && $TERMINAL -e "sudo shutdown -h now"

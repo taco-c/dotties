@@ -1,1 +1,1 @@
-.profile
+/home/pat/.profile

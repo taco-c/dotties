@@ -1,16 +1,26 @@
-#!/bin/sh
+#export XDG_SESSION_TYPE=x11
+#export GDK_BACKEND=x11
+#exec gnome-session
 
-# Start programmer for graphische miljøer
-#backweb &			# Sett bakgrunnen
-./.fehbg
-unclutter &			# Gøym musa etter ei stund
-dunst &				# Meldingsbokar
-compton -bfc			# Gennomsiktighet
-sxhkd &				# Enkel X Heiteknapper Demon
-[ "$WM" = "dwm" ]   dwmbar &	# dwm bar
-xkbutil set "$(cat $XDG_CONFIG_HOME/keymaps/current-layout)" &
-#minuttvarsel &
+if [[ "$WM" != "bspwm" ]]; then
+	sxhkd -c ~/.config/sxhkd/sxhkdrc_universal &
+fi
 
-#while :; do
-"$WM"
-#done
+[ "$WM" = "dwm" ] && dwmbloxx &
+
+#(echo $HOME/.config/sxhkd/sxhkdrc | entr pkill -USR1 -x sxhkd) &
+
+#[ -f "$XDG_CONFIG_HOME/keymaps/xkeymap" ] && xkbcomp "$XDG_CONFIG_HOME/keymaps/xkeymap" $DISPLAY
+xkbutil set NO
+
+[ "$(xrandr | grep "VGA-0 connected" | wc -l)" = "1" ] && \
+[ "$(xrandr | grep "DVI-0 connected" | wc -l)" = "1" ] && \
+xrandr --output VGA-0 --off --output LVDS --mode 1400x1050 --pos 0x0 --rotate normal --output DVI-0 --primary --mode 1920x1080 --pos 1400x0 --rotate normal && \
+sleep 1s && \
+xrandr --output VGA-0 --mode 1280x1024 --pos 1920x0 --rotate normal --output LVDS --off --output DVI-0 --primary --mode 1920x1080 --pos 0x45 --rotate normal
+
+unclutter &
+xwallpaper --zoom ~/.config/wallpaper &
+redshift -t 5500:3500 &
+
+exec "$WM"

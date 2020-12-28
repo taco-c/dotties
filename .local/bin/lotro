@@ -1,0 +1,3 @@
+#!/bin/sh
+
+wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/StandingStoneGames/The\ Lord\ of\ the\ Rings\ Online/LotroLauncher.exe

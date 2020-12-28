@@ -2,22 +2,25 @@
 # Aliases
 
 # Dotfiles management
-#alias dotties="git --git-dir=$HOME/.dotties/ --work-tree=$HOME/"
+alias dotties="git --git-dir=$HOME/.dotties.git/ --work-tree=$HOME/"
 
 # General
 alias ls="ls -hN --color=auto --group-directories-first"
+alias lsl="ls -l"
 alias ll="ls -lAgG"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 #alias edit="$EDITOR"
 alias vim="nvim"
 alias alert='notify-send --urgency=low "$([ $? = 0 ] && echo "Suksess" || echo "Feil")" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias groff="groff -Kutf8 -P-pa4 -dpaper=a4"
 
 # Snarvegar
 alias cfi="$EDITOR $XDG_CONFIG_HOME/i3/config"
 alias cfx="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"
 alias cfa="$EDITOR $XDG_CONFIG_HOME/aliases"
 alias cfs="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+alias cfb="$EDITOR $XDG_CONFIG_HOME/bspwm/bspwmrc"
 alias cfp="$EDITOR $HOME/.profile"
 alias cfz="$EDITOR $HOME/.zshrc"
 

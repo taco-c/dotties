@@ -7,17 +7,17 @@ if [ $m = "0" ]; then
 elif [ $m -lt "15" ]; then
 		M="$m over"
 elif [ $m -eq "15" ]; then
-		M="kvart over"
+		M="Kvart over"
 elif [ $m -lt "30" ]; then
 		d="$(expr 30 - $m)"
 		M="$d på halv"
 elif [ $m -eq "30" ]; then
-		M="halv"
+		M="Halv"
 elif [ $m -lt "45" ]; then
 		d="$(expr $m - 30)"
 		M="$d over halv"
 elif [ $m -eq "45" ]; then
-		M="kvart på"
+		M="Kvart på"
 else
 		d="$(expr 60 - $m)"
 		M="$d på"
@@ -26,13 +26,13 @@ fi
 h="$(date '+%_I' | tr -d ' ')"
 [ $m -gt "15" ] && h="$(date -d '1 hour' '+%_I' | tr -d ' ')"
 
-printf "$M $h"
+the_time="$M $h"
 
 while getopts nd o; do
 	case $o in
-		n) printf " på $(date '+%A')";;
-		d) printf " den $(date '+%_d. %B')";;
+		n) the_time="$the_time på $(date '+%A')";;
+		d) the_time="$the_time den $(date '+%_d. %B')";;
 	esac
 done
 
-printf "\n"
+echo "$the_time"

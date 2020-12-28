@@ -8,6 +8,7 @@ filetype plugin on
 syntax on
 set encoding=utf-8
 set number
+set tabstop=4
 
 set splitbelow splitright
 

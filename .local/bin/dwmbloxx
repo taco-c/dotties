@@ -1,0 +1,16 @@
+#!/bin/sh
+
+_battery() {
+	capasity="$(cat /sys/class/power_supply/BAT0/capacity)%"
+	status="$(cat /sys/class/power_supply/BAT0/status)"
+	echo $capasity $status
+}
+
+_keymap() {
+	cat ~/.config/keymaps/current-layout
+}
+
+while true; do
+	xsetroot -name "$(_keymap) | $(_battery) | $(ordur)"
+	sleep 1s
+done
