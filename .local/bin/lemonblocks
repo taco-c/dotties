@@ -23,12 +23,12 @@ _volume() {
 	_vol_info=$(amixer sget Master | grep "Front Left:")
 	_vol=$(echo $_vol_info | awk '{print $5}' | tr -d "[]%")%
 	[ "$(echo $_vol_info | awk '{print $7}')" = "[off]" ] && _vol="M"
-	echo -e " $_vol "
+	echo -e " V$_vol "
 }
 
 _battery() {
 	batinfo=$(acpi --battery)
-	BATPERC=$(echo $batinfo | cut -d, -f2 | cut -d" " -f2 | cut -d% -f1)
+	BATPERC=B$(echo $batinfo | cut -d, -f2 | cut -d" " -f2 | cut -d% -f1)
 	state=$(echo $batinfo | awk '{print $3}' | cut -d, -f1)
 	
 	bat=" $BATPERC% "
@@ -40,7 +40,7 @@ _battery() {
 		
 		if [ "$BATPERC" -lt "11" ]; then
 			bat="%{B#ff0000} $BATPERC% %{B-}"
-		elif [ "$BATPERC" -lt "21" ]; then
+		elif [ "$BATPERC" -lt "41" ]; then
 			bat="%{B#ffff00}%{F#000000} $BATPERC% %{F-}%{B-}"
 		fi
 	elif [ "$state" = "Full" ]; then

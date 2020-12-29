@@ -4,7 +4,7 @@ export TERMINAL="termite"
 export EDITOR="nvim"
 export BROWSER="palemoon"
 export READER="zathura"
-export WM="dwm"
+export WM="bspwm"
 export ZDOTDIR="$HOME/.config/zsh"
 
 #PATHs

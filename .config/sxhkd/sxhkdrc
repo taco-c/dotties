@@ -10,24 +10,6 @@ super + Tab
 super + space
 	xkbutil toggle && lemonblocks-reload keymap
 
-# bspwm focus the node in the given direction
-#super + {_,shift +} {Left,Down,Up,Right}
-#	bspc node -{f,s} {west,south,north,east}
-
-#super + control + {Left,Right}
-#	bspc desktop -f {prev,next}.local && lemonblocks-reload desktops
-
-#super + {_,shift +} {1-9,0}
-#	bspc {desktop -f,node -d} '^{1-9,10}' && \
-#	lemonblocks-reload desktops
-
-# bspwm expand a window by moving one of its side outward
-#super + alt + Right
-#	bspc node -z right 20 0
-
-#super + alt + Left
-#	bspc node -z right -20 0
-
 # PageUp og PageDown
 super + {_,shift +} {Next,Prior}
 	amixer sset Master {10,20}%{-,+} && lemonblocks-reload volume
@@ -36,9 +18,6 @@ super + {Home,End}
 	amixer sset Master {100,50}% && lemonblocks-reload volume
 
 # Bokstavkombinasjonssnarveier
-#super + q
-#	bspc node -c;
-
 super + w
 	dugrep mkv,mp4,avi mpv
 
@@ -84,9 +63,6 @@ super + h
 
 super + l
 	i3lock -ei "$XDG_CONFIG_HOME/lock-img.png" -p win
-
-super + x
-	[ "$(echo -e 'Nei\nJa' | rofi -dmenu -p 'Vil du logge av?' -lines 2)" = "Ja" ] && bspc quit
 
 super + shift + x
 	[ "$(echo -e 'Nei\nJa' | rofi -dmenu -p 'Vil du slå av PC-en?' -lines 2)" = "Ja" ] && $TERMINAL -e "sudo shutdown -h now"
