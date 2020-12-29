@@ -1,6 +1,6 @@
 # .profile
 
-export TERMINAL="termite"
+export TERMINAL="st"
 export EDITOR="nvim"
 export BROWSER="palemoon"
 export READER="zathura"
