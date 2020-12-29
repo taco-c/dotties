@@ -53,7 +53,8 @@ _battery() {
 _clock() {
 	#DATETIME=$(date "+%A %d. %B %Y - %I:%M")
 	#DATETIME=$(date "+%-I:%-M")
-	DATETIME=$(ordur)
+	#DATETIME=$(ordur)
+	DATETIME=$(brøkur)
 	echo "$DATETIME"
 }
 
