@@ -3,6 +3,8 @@
 # Fixes for the Home, End and Delete buttons
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
 bindkey "\e[3~" delete-char
 
 HISTFILE="$XDG_DATA_HOME/zsh/histfile"
@@ -13,7 +15,7 @@ PROMPT='%B%F{yellow}[%~]%f%b '
 setopt appendhistory autocd extendedglob nomatch notify
 setopt HIST_IGNORE_DUPS
 unsetopt beep
-bindkey -v
+#bindkey -v
 
 # Plugins
 zstyle :compinstall filename '~/.zshrc'
