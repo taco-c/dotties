@@ -1,16 +1,11 @@
 # .profile
 
-export TERMINAL="st"
+export TERMINAL="urxvt"
 export EDITOR="nvim"
-export BROWSER="palemoon"
+export BROWSER="firefox"
 export READER="zathura"
 export WM="bspwm"
 export ZDOTDIR="$HOME/.config/zsh"
-
-#PATHs
-export GOPATH="$HOME/go"
-export BIN_HOME="$HOME/.local/bin"
-export PATH="$GOPATH/bin:$BIN_HOME:$PATH"
 
 # XDG variables
 ## User directories
@@ -21,9 +16,17 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
+#PATHs
+export GOPATH="$XDG_DATA_HOME/go:$HOME/go"
+export BIN_HOME="$HOME/.local/bin"
+export PATH="$XDG_DATA_HOME/go/bin:$HOME/go/bin:$BIN_HOME:$PATH"
+
 # Xorg
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+
+export LESSHISTFILE=-
+#export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 
 #[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && startx "$XINITRC"
 
