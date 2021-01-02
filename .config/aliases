@@ -14,6 +14,7 @@ alias diff="diff --color=auto"
 alias vim="nvim"
 alias alert='notify-send --urgency=low "$([ $? = 0 ] && echo "Suksess" || echo "Feil")" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias groff="groff -Kutf8 -P-pa4 -dpaper=a4"
+alias d="devour"
 
 # Snarvegar
 alias cfi="$EDITOR $XDG_CONFIG_HOME/i3/config"
