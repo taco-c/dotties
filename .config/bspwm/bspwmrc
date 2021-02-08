@@ -27,16 +27,12 @@ run_if_not_running redshift "-t 5500:3500"
 
 # Start workspaces on the main monitor.
 bspc monitor $mainmonitor -d 1 2 3 4 5 6 7 8 9 10
-# bspc monitor $mainmonitor -d A B C D E F G H I J
-# bspc monitor $mainmonitor -d Zevs Hera Poseidon Demeter Dionysos Apollon Artemis Hermes Athene Ares
 # bspc monitor $mainmonitor -d А Б В Г Д Е Ё Ж З И
-# bspc monitor $mainmonitor -d Ⰰ Ⰱ Ⰲ Ⰳ Ⰴ Ⰵ Ⰶ Ⰷ Ⰸ Ⰺ
 
 #bspc monitor -d I II III IV V VI VII VIII IX X
 #bspc monitor VGA-0 -d I II III IV V
 #bspc monitor LVDS -d VI VII VIII IX X
 
-# ~/.local/bin/lemonbar-text | lemonbar -p -g x24 -B "#44111111" -f "Go:size=11" -f "Font Awesome" &
 lemonblocks &
 ~/.fehbg &
 
