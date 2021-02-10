@@ -11,8 +11,8 @@ super + space
 	xkbutil toggle && lemonblocks-reload keymap
 
 # PageUp og PageDown
-super + {_,shift +} {Next,Prior}
-	amixer sset Master {10,20}%{-,+} && lemonblocks-reload volume
+super + {Next,Prior}
+	amixer sset Master 5%{-,+} && lemonblocks-reload volume
 
 super + {Home,End}
 	amixer sset Master {100,50}% && lemonblocks-reload volume
