@@ -10,6 +10,9 @@ super + Tab
 super + space
 	xkbutil toggle && lemonblocks-reload keymap
 
+super + control + delete
+	systemctl suspend
+
 # PageUp og PageDown
 super + {Next,Prior}
 	amixer sset Master 5%{-,+} && lemonblocks-reload volume
@@ -34,7 +37,7 @@ super + control + r
 #	[ "$WM" = "i3" ] && i3-msg split toggle
 
 super + {_,shift +} y
-	mpv "$(xclip -out)"
+	mpv "$(xclip -out)" --ytdl-raw-options=format="best[height<=480]"
 	#youtube-dl "$(xclip -out)" -o - | vlc - {_,--sout "#chromecast" --sout-chromecast-ip="192.168.10.178"}
 
 # super + shift + y
