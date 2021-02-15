@@ -12,3 +12,7 @@ pkill -USR1 -x sxhkd
 
 # Lemonbar
 pkill lemonbar
+
+# Set wallpaper
+xwallpaper --zoom ~/.config/wallpaper &
+
