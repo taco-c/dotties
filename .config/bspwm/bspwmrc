@@ -13,6 +13,9 @@ xcompmgr &
 dunst &
 run_if_not_running redshift "-t 5500:3500"
 
+# Make sure lemonbar stays under fullscreen applications
+xdo above -t $(xdo id -n root) $(xdo id -n lemonbar)
+
 # We look for a non-laptop monitor to use for default, but use the laptop
 # screen (LVDS) if there's nothing else. This is because I assume that if you
 # have an extra screen attached to a laptop, you want to use that.
