@@ -11,10 +11,6 @@ run_if_not_running sxhkd $HOME/.config/sxhkd/sxhkdrc_bspwm
 run_if_not_running unclutter
 xcompmgr &
 dunst &
-run_if_not_running redshift "-t 5500:3500"
-
-# Make sure lemonbar stays under fullscreen applications
-xdo above -t $(xdo id -n root) $(xdo id -n lemonbar)
 
 # We look for a non-laptop monitor to use for default, but use the laptop
 # screen (LVDS) if there's nothing else. This is because I assume that if you
@@ -38,11 +34,23 @@ bspc monitor $mainmonitor -d 1 2 3 4 5 6 7 8 9 10
 
 lemonblocks &
 ~/.fehbg &
+run_if_not_running redshift "-t 5500:3500"
+
+# Make sure lemonbar stays under fullscreen applications
+xdo above -t $(xdo id -n root) $(xdo id -n lemonbar)
+
+bspc config top_padding 0
+bspc config left_padding 0
+bspc config right_padding 0
+bspc config bottom_padding 0
 
 bspc config border_width 0
 bspc config window_gap   4
-# if panelbar-thing then bspc config top_padding 24
 bspc config focus_follows_pointer true
+bspc config border_width 0
+
+bspc config gapless_monocle on
+bspc config single_monocle on
 
 bspc config split_ratio          0.5
 bspc config borderless_monocle   true

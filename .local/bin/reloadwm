@@ -16,3 +16,5 @@ pkill lemonbar
 # Set wallpaper
 xwallpaper --zoom ~/.config/wallpaper &
 
+xdo above -t $(xdo id -n root) $(xdo id -n lemonbar)
+

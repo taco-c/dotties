@@ -10,8 +10,8 @@ super + Tab
 super + space
 	xkbutil toggle && lemonblocks-reload keymap
 
-super + control + delete
-	systemctl suspend
+super + control + Delete
+	i3lock -ei "$XDG_CONFIG_HOME/lock-img.png" -p win && systemctl suspend
 
 # PageUp og PageDown
 super + {Next,Prior}
@@ -36,9 +36,17 @@ super + control + r
 #super + t
 #	[ "$WM" = "i3" ] && i3-msg split toggle
 
-super + {_,shift +} y
-	mpv "$(xclip -out)" --ytdl-raw-options=format="best[height<=480]"
-	#youtube-dl "$(xclip -out)" -o - | vlc - {_,--sout "#chromecast" --sout-chromecast-ip="192.168.10.178"}
+super + y
+	notify-send "Åpner mpv..." && \
+	mpv "$(xclip -out)" \
+		--ytdl-raw-options=format="best[height<=480]" || \
+	notify-send "Åpning av video feilet!"
+
+super + shift + y
+	notify-send "Åpner mpv..." && \
+	mpv "$(xclip -out)" \
+		--no-video --player-operation-mode=pseudo-gui || \
+	notify-send "Åpning av video feilet!"
 
 # super + shift + y
 # 	surf "https://www.yr.no/stad/Noreg/Vestfold_og_Telemark/Larvik/Larvik/time_for_time.html"
@@ -58,11 +66,20 @@ super + a
 super + s
 	echo "rk@cassettian.space\nriq@192.168.1.4" | rofi -dmenu | xargs urxvt -e ssh
 
-super + g
-	gnome-calculator
+super + f
+	bspc desktop -l next
+
+super + shift + f
+	bspc node focused -t floating || bspc node focused -t tiled
 
 super + h
 	surf "https://www.hurtigruten.no/kart/?shipCode=MS"
+
+super + k
+	gnome-calculator
+
+super + shift + k
+	$TERMINAL -e calcurse
 
 super + l
 	i3lock -ei "$XDG_CONFIG_HOME/lock-img.png" -p win
@@ -117,3 +134,4 @@ XF86AudioStop
 
 XF86Sleep
 	lockscreen
+

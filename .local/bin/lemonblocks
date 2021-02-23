@@ -58,6 +58,13 @@ _clock() {
 	echo "$DATETIME"
 }
 
+_window_title() {
+	_title=`bspc query --node focused.window -T | jq ".client.className"`
+	_title="${_title%\"}"
+	_title="${_title#\"}"
+	echo "$_title"
+}
+
 _update() {
 	echo -e "%{l}$desks%{c}$(_clock)%{r}$keym%{R} $vol %{R}$(_battery)" &
 	wait
@@ -78,9 +85,19 @@ _update_keymap() {
 	_update
 }
 
+_update_window_title() {
+	#while true; do
+		win_title=" $(_window_title) "
+		_update
+	#	sleep 1s
+	#	wait
+	#done
+}
+
 _update_desktops > /dev/null
 _update_volume > /dev/null
 _update_keymap > /dev/null
+# _update_window_title > /dev/null
 
 _lemonblocks() {
 	trap "_update_desktops" SIGRTMIN+1
@@ -94,4 +111,5 @@ _lemonblocks() {
 	done
 }
 
-_lemonblocks | lemonbar -p -g x24 -B "#44111111" -f "Go:size=10"
+_lemonblocks | lemonbar -p -g x24 -B "#44111111" -F "#FFFFFF" -f "Go:size=10" | $SHELL
+
