@@ -1,6 +1,16 @@
 #! /bin/sh
 
-_btc=0.018367
-_eth=1.25
+_configfile="$XDG_CONFIG_HOME/cryptorc"
 
-curl -s "http://nok.rate.sx/${_btc}btc+${_eth}eth" | cut -d. -f1 | xargs printf "%s kr\n"
+alias config_not_exists\?="[ ! -x $_configfile ]"
+alias source_config=". $_configfile"
+alias exit_with_error="echo 'ERROR: Config file nonexistent or not executable.' && exit"
+
+config_not_exists? && exit_with_error || source_config
+
+alias get="curl -s 'http://nok.rate.sx/${_btc}btc+${_eth}eth'"
+alias floor="cut -d. -f1"
+alias xprint="xargs printf '%s kr\n'"
+
+get | floor | xprint
+
