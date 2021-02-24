@@ -10,8 +10,8 @@ super + Tab
 super + space
 	xkbutil toggle && lemonblocks-reload keymap
 
-super + control + Delete
-	i3lock -ei "$XDG_CONFIG_HOME/lock-img.png" -p win && systemctl suspend
+super + {_,shift +} control + Delete
+	{i3lock -ei "$XDG_CONFIG_HOME/lock-img.png" -p win &&,_} systemctl suspend
 
 # PageUp og PageDown
 super + {Next,Prior}
