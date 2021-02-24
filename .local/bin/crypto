@@ -1,0 +1,6 @@
+#! /bin/sh
+
+_btc=0.018367
+_eth=1.25
+
+curl -s "http://nok.rate.sx/${_btc}btc+${_eth}eth" | cut -d. -f1 | xargs printf "%s kr\n"

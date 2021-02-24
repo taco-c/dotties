@@ -1,0 +1,6 @@
+#! /bin/sh
+
+mpv "$HOME/Media/Musikk/Youtube-Musikk" \
+	--shuffle \
+	--player-operation-mode=pseudo-gui
+
