@@ -3,6 +3,7 @@
 
 # Dotfiles management
 alias dotties="git --git-dir=$HOME/.dotties.git/ --work-tree=$HOME/"
+alias dottiespush="dotties push origin && dotties push cassettian"
 
 # General
 alias ls="ls -hN --color=auto --group-directories-first"
@@ -30,6 +31,7 @@ _fzf_edit() {
 }
 
 alias ce="_fzf_edit $XDG_CONFIG_HOME"
-alias se="_fzf_edit $HOME_BIN"
+alias se="_fzf_edit $BIN_HOME"
 alias ge="_fzf_edit $GOPATH"
 alias pe="_fzf_edit $HOME/prosjekter"
+

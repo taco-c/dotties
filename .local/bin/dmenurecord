@@ -14,7 +14,7 @@ dir="$HOME/rec"
 updateicon() { \
 	echo "$1" > /tmp/recordingicon
 	pkill -RTMIN+11 i3blocks
-	}
+}
 
 killrecording() {
 	recpid="$(cat /tmp/recordingpid)"
@@ -27,7 +27,7 @@ killrecording() {
 	sleep 3
 	kill -9 "$recpid"
 	exit
-	}
+}
 
 screencast() { \
 	ffmpeg -y \
@@ -41,7 +41,7 @@ screencast() { \
 	"$dir/screencast-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "⏺️🎙️"
-       	}
+}
 
 video() { ffmpeg \
 	-f x11grab \
@@ -51,7 +51,7 @@ video() { ffmpeg \
 	"$dir/video-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "⏺️"
-	}
+}
 
 webcamhidef() { ffmpeg \
 	-f v4l2 \
@@ -60,7 +60,7 @@ webcamhidef() { ffmpeg \
 	"$dir/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "🎥"
-	}
+}
 
 webcam() { ffmpeg \
 	-f v4l2 \
@@ -69,7 +69,7 @@ webcam() { ffmpeg \
 	"$dir/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "🎥"
-	}
+}
 
 
 audio() { \
@@ -79,10 +79,10 @@ audio() { \
 	"$dir/audio-$(date '+%y%m%d-%H%M-%S').flac" &
 	echo $! > /tmp/recordingpid
 	updateicon "🎙️"
-	}
+}
 
 askrecording() { \
-	choice=$(printf "screencast\\nvideo\\naudio\\nwebcam\\nwebcam (hi-def)" | dmenu -i -p "Select recording style:")
+	choice=$(printf "screencast\\nvideo\\naudio\\nwebcam\\nwebcam (hi-def)" | rofi -dmenu -i -p "Select recording style:")
 	case "$choice" in
 		screencast) screencast;;
 		audio) audio;;
@@ -90,12 +90,12 @@ askrecording() { \
 		webcam) webcam;;
 		"webcam (hi-def)") webcamhidef;;
 	esac
-	}
+}
 
 asktoend() { \
-	response=$(printf "No\\nYes" | dmenu -i -p "Recording still active. End recording?") &&
+	response=$(printf "No\\nYes" | rofi -dmenu -i -p "Recording still active. End recording?") &&
 	[ "$response" = "Yes" ] &&  killrecording
-	}
+}
 
 
 case "$1" in
